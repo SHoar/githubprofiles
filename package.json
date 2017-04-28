@@ -1,0 +1,19 @@
+{
+  "name": "githubprofiles",
+  "version": "1.0.0",
+  "description": "Access Github Profiles using the Github API and a React client-side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SHoar/githubprofiles.git"
+  },
+  "author": "Sean Hoar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SHoar/githubprofiles/issues"
+  },
+  "homepage": "https://github.com/SHoar/githubprofiles#readme"
+}
