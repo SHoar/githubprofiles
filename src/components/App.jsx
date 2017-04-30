@@ -28,7 +28,7 @@ class App extends Component {
       }.bind(this),
       error: function (xhr, status, err){
         this.setState({userName: null});
-        alert("User"+err);
+        alert("That Username is "+err);
       }.bind(this)
     });
   }
@@ -44,7 +44,6 @@ class App extends Component {
       }.bind(this),
       error: function (xhr, status, err){
         this.setState({userName: null});
-        alert(err);
       }.bind(this)
     });
   }
