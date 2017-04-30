@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import RepoList from './RepoList.jsx';
+import App from '../App.jsx';
 
 export default class Profile extends Component {
   render(){
@@ -17,28 +18,33 @@ export default class Profile extends Component {
                         </div>
 
                         <div className="col-md-8">
-                          <div className="row">
-                            <div className="col-md-12"><span className="label label-primary">{this.props.userData.public_repos} Repos</span>
-                              <span className="label label-success">{this.props.userData.public_gists} Gists</span>
-                              <span className="label label-info">{this.props.userData.followers} Followers</span>
-                              <span className="label label-danger">{this.props.userData.following} Following</span>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <span className="label label-primary">{this.props.userData.public_repos} Repos</span>
+                                    <span className="label label-success">{this.props.userData.public_gists} Gists</span>
+                                    <span className="label label-info">{this.props.userData.followers} Followers</span>
+                                    <span className="label label-danger">{this.props.userData.following} Following</span>
+                                </div>
                             </div>
-                          </div>
 
                           <hr />
 
                           <div className="row">
-                            <div className="col-md-12">
-                              <ul className="list-group">
-                                <li className="list-item"><strong>Username: </strong> {this.props.userData.name}</li>
-                                <li className="list-item"><strong>Location: </strong> {this.props.userData.location}</li>
-                                <li className="list-item"><strong>Email: </strong> {this.props.userData.email}</li>
-                              </ul>
-                            </div>
+                                <div className="col-md-12">
+                                      <ul className="list-group">
+                                        <li className="list-group-item"><strong>Username: </strong> {this.props.userData.login}</li>
+                                        <li className="list-group-item"><strong>Location: </strong> {this.props.userData.location}</li>
+                                        <li className="list-group-item"><strong>Email: </strong> {this.props.userData.email}</li>
+                                      </ul>
+                                </div>
                           </div>
-
+                          <br />
+                          <a className="btn btn-primary" target="_blank" href={this.props.userData.html_url}>Visit Profile</a>
                         </div>
                     </div>
+                    <hr />
+                    <h3>User Repositories</h3>
+                    <RepoList userRepos={this.props.userRepos} />
                 </div>
 
             </div>

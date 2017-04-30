@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import t from 'prop-types';
 import Navbar from './Navbar.jsx';
 import Profile from './github/Profile.jsx';
+import RepoList from './github/RepoList.jsx';
 import Jumbotron from './Jumbotron.jsx';
 import Footer from './Footer.jsx'
 
@@ -13,7 +14,7 @@ class App extends Component {
       userName: 'SHoar',
       userData: [],
       userRepos: [],
-      perPage: 5
+      perPage: 10
     }
   }
 
@@ -25,7 +26,22 @@ class App extends Component {
       cache: false,
       success: function(data){
         this.setState({userData: data});
-        console.log(data);
+      }.bind(this),
+      error: function (xhr, status, err){
+        this.setState({userName: null});
+        alert(err);
+      }.bind(this)
+    });
+  }
+
+  // Get User Repos
+  getUserRepos() {
+    $.ajax({
+      url: 'https://api.github.com/users/'+this.state.userName+'/repos?per_page='+this.state.perPage+'&client_id='+this.props.clientId+'&client_secret='+this.props.clientSecret+'&sort=created',
+      dataType: 'json',
+      cache: false,
+      success: function(data){
+        this.setState({userRepos: data});
       }.bind(this),
       error: function (xhr, status, err){
         this.setState({userName: null});
@@ -36,6 +52,7 @@ class App extends Component {
 
   componentDidMount(){
     this.getUserData();
+    this.getUserRepos();
   }
 
   render(){
@@ -45,7 +62,7 @@ class App extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
-                    <Profile userData = {this.state.userData}/>
+                    <Profile {...this.state} />
                   </div>
                 </div>
               </div>
