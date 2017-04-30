@@ -17,7 +17,7 @@ export default class Search extends Component {
                 <div>
                     <form onSubmit={this.onSubmit.bind(this)}>
                         <label>Search Github Usernames</label>
-                        <input type="text" ref="username" className="form-control" />
+                        <input type="text" ref="username" className="form-control" placeholder="Type a username, then hit ENTER to search" />
                     </form>
                 </div>
                 );
