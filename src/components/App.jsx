@@ -4,8 +4,7 @@ import t from 'prop-types';
 import Navbar from './Navbar.jsx';
 import Profile from './github/Profile.jsx';
 import RepoList from './github/RepoList.jsx';
-import Jumbotron from './Jumbotron.jsx';
-import Footer from './Footer.jsx'
+import Search from './github/Search.jsx';
 
 class App extends Component {
   constructor(props){
@@ -29,7 +28,7 @@ class App extends Component {
       }.bind(this),
       error: function (xhr, status, err){
         this.setState({userName: null});
-        alert(err);
+        alert("User"+err);
       }.bind(this)
     });
   }
@@ -50,6 +49,13 @@ class App extends Component {
     });
   }
 
+  handleFormSubmit(username){
+      this.setState({userName: username}, function(){
+          this.getUserData();
+          this.getUserRepos();
+      });
+  }
+
   componentDidMount(){
     this.getUserData();
     this.getUserRepos();
@@ -58,14 +64,18 @@ class App extends Component {
   render(){
     return (
             <div>
-              <Navbar />
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-12">
-                    <Profile {...this.state} />
-                  </div>
+                <Navbar />
+                <div className="container">
+                    <Search onFormSubmit = {this.handleFormSubmit.bind(this)}/>
                 </div>
-              </div>
+                <br />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Profile {...this.state} />
+                        </div>
+                    </div>
+                </div>
             </div>
     );
   }
