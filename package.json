@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SHoar/githubprofiles#readme",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
